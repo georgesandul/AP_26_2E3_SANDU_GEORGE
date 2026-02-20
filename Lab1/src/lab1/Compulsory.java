@@ -2,7 +2,7 @@ package lab1;
 
 public class Compulsory {
 
-    public void solve(Stringp[] args){
+    public void solve(String[] args){
         //1
         System.out.println("Hello World!");
         //2
