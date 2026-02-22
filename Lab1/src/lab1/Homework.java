@@ -2,14 +2,38 @@ package lab1;
 
 public class Homework {
     public void solve(){
-        int n = 20;
-        int[][] firstMatrix = matrixWhite(n);
-        draw(firstMatrix, "rectangle");
-        image(firstMatrix);
-        int m = 20;
-        int[][] secondMatrix = matrixBlack(m);
-        draw(secondMatrix, "circle");
-        image(secondMatrix);
+        int n = 35;
+        int m = 17000; //we get outofmemory at around 18k
+        if(n < 100){
+            int[][] firstMatrix = matrixWhite(n);
+            draw(firstMatrix, "rectangle");
+            String result = image(firstMatrix);
+            System.out.println(result);
+        }else{
+            long startTime = System.currentTimeMillis();
+
+            int[][] firstMatrix = matrixWhite(n);
+            draw(firstMatrix, "rectangle");
+            String result = image(firstMatrix);
+
+            long endTime = System.currentTimeMillis();
+            System.out.println("time in milliseconds: " + (endTime - startTime));
+        }
+        if(m < 100){
+            int[][] secondMatrix = matrixBlack(m);
+            draw(secondMatrix, "circle");
+            String result2 = image(secondMatrix);
+            System.out.println(result2);
+        }else{
+            long startTime2 = System.currentTimeMillis();
+
+            int[][] secondMatrix = matrixBlack(m);
+            draw(secondMatrix, "circle");
+            String result2 = image(secondMatrix);
+
+            long endTime2 = System.currentTimeMillis();
+            System.out.println("time in milliseconds for 2nd matrix: " + (endTime2 - startTime2));
+        }
     }
 
     public int[][] matrixWhite(int n) {
@@ -30,11 +54,21 @@ public class Homework {
     public void draw(int[][] matrix, String shape) {
         if(shape.equals("circle")){
             int length = matrix.length;
-            int matrixMidpoint = length/2;
-            matrix[matrixMidpoint][matrixMidpoint/2] = 67;    //guidepoint mijloc STANGA
-            matrix[matrixMidpoint][matrixMidpoint + matrixMidpoint/2] = 67;   //guidepoint mijloc DREAPTA
-            matrix[matrixMidpoint/2][matrixMidpoint] = 67;    //guidepoint mijloc SUS
-            matrix[matrixMidpoint + matrixMidpoint/2][matrixMidpoint] = 67;    //guidepoint mijloc JOS
+            int centerX = length / 2;
+            int centerY = length / 2;
+            int radius = length / 4; // half the grid
+
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < length; j++) {
+
+                    int dx = i - centerX; // distanta de la punctul curent la centru
+                    int dy = j - centerY;
+
+                    if ((dx * dx) + (dy * dy) <= (radius * radius)) {
+                        matrix[i][j] = 255;
+                    }
+                }
+            }
 
         } else {
             int length = matrix.length;
@@ -53,7 +87,7 @@ public class Homework {
         }
     }
 
-    public void image(int[][] matrix) {
+    public String image(int[][] matrix) {
         StringBuilder imageString = new StringBuilder();
         int n = matrix.length;
         for(int i = 0; i < n; i++){
@@ -66,6 +100,6 @@ public class Homework {
             }
             imageString.append("\n");
         }
-        System.out.println(imageString.toString());
+        return imageString.toString();
     }
 }
