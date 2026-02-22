@@ -7,6 +7,9 @@ public class HelloWorld {
         Compulsory compulsoryExercises = new Compulsory();
         compulsoryExercises.solve(args);
 
+        Homework matrixHomework = new Homework();
+        matrixHomework.solve();
+
         /*Boolean programOnline = true;
         while(programOnline){
             System.out.println("Welcome to my program!");
