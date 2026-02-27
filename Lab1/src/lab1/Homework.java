@@ -3,7 +3,7 @@ package lab1;
 public class Homework {
     public void solve(){
         int n = 35;
-        int m = 17000; //we get outofmemory at around 18k
+        int m = 1500; //we get outofmemory at around 18k
         if(n < 100){
             int[][] firstMatrix = matrixWhite(n);
             draw(firstMatrix, "rectangle");
