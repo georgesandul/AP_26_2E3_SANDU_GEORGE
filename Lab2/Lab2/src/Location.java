@@ -1,12 +1,17 @@
-public class Location {
+import java.util.Objects;
+
+/**
+ * O locatie abstracta in problema.
+ * Clasa sealed care lasa doar City Airport si GasStation sa mosteneasca.
+ */
+
+public abstract sealed class Location permits City, Airport, GasStation {
     private String name;
-    private LocationType type;
     private int x, y;
 
-    public Location(int y, int x, LocationType type, String name) {
+    public Location(int y, int x, String name) {
         this.y = y;
         this.x = x;
-        this.type = type;
         this.name = name;
     }
 
@@ -14,8 +19,16 @@ public class Location {
         return name;
     }
 
-    public LocationType getType() {
-        return type;
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return x == location.x && y == location.y && Objects.equals(name, location.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, x, y);
     }
 
     public int getX() {
@@ -30,10 +43,6 @@ public class Location {
         this.name = name;
     }
 
-    public void setType(LocationType type) {
-        this.type = type;
-    }
-
     public void setX(int x) {
         this.x = x;
     }
@@ -46,7 +55,6 @@ public class Location {
     public String toString() {
         return "Location{" +
                 "name='" + name + '\'' +
-                ", type='" + type + '\'' +
                 ", x=" + x +
                 ", y=" + y +
                 '}';

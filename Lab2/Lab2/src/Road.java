@@ -1,12 +1,21 @@
+import java.util.Objects;
+
+/**
+ * Drumuri care conecteaza 2 locatii.
+ * Lungimea nu poate fi mai mica decat distanta Euclideana.
+ */
+
 public class Road {
     private RoadType type;
+    private String name;
     private int length, speedLimit;
 
     private Location location1;
     private Location location2;
 
-    public Road(RoadType type, int length, int speedLimit, Location location1, Location location2) {
+    public Road(RoadType type, String name, int length, int speedLimit, Location location1, Location location2) {
         this.type = type;
+        this.name = name;
         this.length = length;
         this.speedLimit = speedLimit;
         this.location1 = location1;
@@ -23,6 +32,26 @@ public class Road {
         }else{
             this.length = length;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Road road = (Road) o;
+        return length == road.length && speedLimit == road.speedLimit && type == road.type && Objects.equals(name, road.name) && Objects.equals(location1, road.location1) && Objects.equals(location2, road.location2);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, name, length, speedLimit, location1, location2);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public RoadType getType() {
@@ -68,7 +97,8 @@ public class Road {
     @Override
     public String toString() {
         return "Road{" +
-                "type='" + type + '\'' +
+                "type=" + type +
+                ", name='" + name + '\'' +
                 ", length=" + length +
                 ", speedLimit=" + speedLimit +
                 ", location1=" + location1 +
