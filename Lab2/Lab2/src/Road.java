@@ -1,11 +1,11 @@
 public class Road {
-    private String type;
+    private RoadType type;
     private int length, speedLimit;
 
     private Location location1;
     private Location location2;
 
-    public Road(String type, int length, int speedLimit, Location location1, Location location2) {
+    public Road(RoadType type, int length, int speedLimit, Location location1, Location location2) {
         this.type = type;
         this.length = length;
         this.speedLimit = speedLimit;
@@ -25,7 +25,7 @@ public class Road {
         }
     }
 
-    public String getType() {
+    public RoadType getType() {
         return type;
     }
 
@@ -45,7 +45,7 @@ public class Road {
         return location2;
     }
 
-    public void setType(String type) {
+    public void setType(RoadType type) {
         this.type = type;
     }
 

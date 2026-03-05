@@ -1,8 +1,9 @@
 public class Location {
-    private String name, type;
+    private String name;
+    private LocationType type;
     private int x, y;
 
-    public Location(int y, int x, String type, String name) {
+    public Location(int y, int x, LocationType type, String name) {
         this.y = y;
         this.x = x;
         this.type = type;
@@ -13,7 +14,7 @@ public class Location {
         return name;
     }
 
-    public String getType() {
+    public LocationType getType() {
         return type;
     }
 
@@ -29,7 +30,7 @@ public class Location {
         this.name = name;
     }
 
-    public void setType(String type) {
+    public void setType(LocationType type) {
         this.type = type;
     }
 
