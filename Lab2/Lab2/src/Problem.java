@@ -100,8 +100,8 @@ public class Problem {
             return true;
         }
 
-        // cautam unde ne aflam
-        int currentIndex = -1;
+
+        int currentIndex = -1; // cautam unde ne aflam
         for (int i = 0; i < locationCount; i++) {
             if (locations[i].equals(current)) {
                 currentIndex = i;
