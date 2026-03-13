@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    static void main() {
+    public static void main(String[] args) {
 
         List<Intersection> nodes = IntStream.rangeClosed(0,9)
                 .mapToObj(i -> new Intersection("intersection" + i))
@@ -21,5 +21,14 @@ public class Main {
 
         streetsList.sort(Comparator.comparingInt(Street::getLength));
         System.out.println(streetsList);
+
+        HashSet<Intersection> intersectionSet = new HashSet<>(nodes);
+        System.out.println(intersectionSet.size());
+        Intersection duplicate = new Intersection("intersection1");
+        intersectionSet.add(duplicate);
+        System.out.println(intersectionSet.size());
+        Intersection fakeduplicate = new Intersection("intersection10");
+        intersectionSet.add(fakeduplicate);
+        System.out.println(intersectionSet.size());
     }
 }
