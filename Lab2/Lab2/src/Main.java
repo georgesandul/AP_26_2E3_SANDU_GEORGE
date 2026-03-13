@@ -17,7 +17,7 @@ public class Main {
         problema1.addLocation(bucuresti);
         problema1.addLocation(otopeni);
         problema1.addRoad(autostrada1);
-//        problema1.addRoad(express1); daca bagam drumul asta nu mai e valida problema pt ca conecteaza bucuresti de timisoara dar timisoara nu e in problema asta.
+        problema1.addRoad(express1); //daca bagam drumul asta nu mai e valida problema pt ca conecteaza bucuresti de timisoara dar timisoara nu e in problema asta.
         System.out.println(problema1);
         if(problema1.isValid()){
             System.out.println("problema e valida");

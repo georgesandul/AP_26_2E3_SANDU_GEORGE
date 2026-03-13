@@ -1,27 +1,33 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args){
-        List<Profile> network = new ArrayList<>();
 
-        Person george = new Person ("George", "01");
-        Person marius = new Person ("Marius", "02");
-        Person aurelian = new Person ("Aurelian", "003");
-        Company bitdef = new Company("Bitdefender", "001");
-        Company cogni = new Company("Cognizant", "002");
+        SocialNetwork network = new SocialNetwork();
 
-        network.add(george);
-        network.add(marius);
-        network.add(aurelian);
-        network.add(bitdef);
-        network.add(cogni);
+        Programmer george = new Programmer("Sports", LocalDate.of(2004,4,23), "George", "P01", "Java");
+        Designer julia = new Designer("Travel", LocalDate.of(2006,07,17), "Julia", "P02", "Photoshop");
+        Company bitdef = new Company("Bitdefender", "C01", 450.0);
+        Company cogni = new Company("Cognizant", "C02", 560.0);
 
-        Collections.sort(network);
+        network.addProfile(george);
+        network.addProfile(julia);
+        network.addProfile(bitdef);
+        network.addProfile(cogni);
 
-        for(Profile profiles : network){
-            System.out.println(profiles);
-        }
+        george.addRel(bitdef,"Dev");
+        george.addRel(julia, "friend");
+
+        julia.addRel(cogni,"Lead Designer");
+        julia.addRel(bitdef,"part-time designer");
+
+        network.printNetwork();
+
+        //System.out.println();
+
+        //System.out.println(network);
     }
 }
