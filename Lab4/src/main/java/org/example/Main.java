@@ -2,33 +2,28 @@ package org.example;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        List<Intersection> interList = Stream.iterate(0, i -> i+1)
+                .limit(5)
+                .map(i-> new Intersection("Intersection" + i))
+                .toList();
 
-        List<Intersection> nodes = IntStream.rangeClosed(0,9)
-                .mapToObj(i -> new Intersection("intersection" + i))
-                .collect(Collectors.toList());
+        List<Street> streets = new LinkedList<>();
+        streets.add(new Street("Vitejilor", 15, interList.get(0), interList.get(1)));
+        streets.add(new Street("Simionescu", 20, interList.get(1), interList.get(2)));
+        streets.add(new Street("Bd. Dacia", 40, interList.get(0), interList.get(3)));
 
-        List<Street> streetsList = new LinkedList<>();
-        streetsList.add(new Street(10,"street1", nodes.get(0), nodes.get(1)));
-        streetsList.add(new Street(15,"street2", nodes.get(1), nodes.get(2)));
-        streetsList.add(new Street(25,"street3", nodes.get(0), nodes.get(2)));
-        streetsList.add(new Street(10,"street4", nodes.get(1), nodes.get(3)));
+        streets.sort(Comparator.comparingInt(Street::getLength));
 
-        streetsList.sort(Comparator.comparingInt(Street::getLength));
-        System.out.println(streetsList);
+        System.out.println(streets);
 
-        HashSet<Intersection> intersectionSet = new HashSet<>(nodes);
-        System.out.println(intersectionSet.size());
-        Intersection duplicate = new Intersection("intersection1");
-        intersectionSet.add(duplicate);
-        System.out.println(intersectionSet.size());
-        Intersection fakeduplicate = new Intersection("intersection10");
-        intersectionSet.add(fakeduplicate);
-        System.out.println(intersectionSet.size());
+        Set<Intersection> interSet = new HashSet<>(interList);
+        System.out.println(interSet);
+        Intersection duplicateIntersection = new Intersection("Intersection4");
+        boolean isAdded = interSet.add(duplicateIntersection);
+        System.out.println(isAdded);
     }
 }

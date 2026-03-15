@@ -27,7 +27,7 @@ public class Intersection implements Comparable<Intersection> {
 
     @Override
     public int compareTo(Intersection o) {
-        return this.name.compareTo(o.name);
+        return this.name.compareTo(o.getName());
     }
 
     @Override
