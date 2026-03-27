@@ -7,6 +7,8 @@ public class Resource {
     private int year;
     private String author;
 
+    public Resource() {}
+
     public Resource(String id, String title, String location, int year, String author) {
         this.id = id;
         this.title = title;

@@ -12,6 +12,14 @@ public class Catalog {
         resourceList.add(resource);
     }
 
+    public List<Resource> getResourceList() {
+        return resourceList;
+    }
+
+    public void setResourceList(List<Resource> resourceList) {
+        this.resourceList = resourceList;
+    }
+
     @Override
     public String toString() {
         return "Catalog{" +

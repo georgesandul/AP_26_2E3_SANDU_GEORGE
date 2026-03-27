@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.command.*;
 import org.example.model.Resource;
 import org.example.repository.Catalog;
 import org.example.exception.ResourceException;
@@ -17,31 +18,31 @@ public class Main {
         Catalog catalog1 = new Catalog();
         Resource test = new Resource("doc1","dummy", "/Users/georgesandu/Desktop/dummy.rtf",2026, "George Sandu");
         catalog1.add(test);
-        System.out.println(catalog1);
+
+        String filePath = "catalog.json";
 
         try{
-            openResource(test);
-        } catch(ResourceException except){
-            System.err.println(except.getMessage());
+            Command list = new ListCommand(catalog1);
+            list.execute();
+
+            Command view = new ViewCommand(test);
+            view.execute();
+        } catch (Exception e){
+            System.err.println(e.getMessage());
         }
 
-    }
+        try{
+            Command save = new SaveCommand(catalog1, filePath);
+            save.execute();
 
-    public static void openResource(Resource resource) throws ResourceException{
-        File myFile = new File(resource.getLocation());
+            Command load = new LoadCommand(filePath);
+            load.execute();
 
-        if(!myFile.exists()){
-            throw new ResourceException("file doesn't exist");
+            Command report = new ReportCommand(catalog1);
+            report.execute();
+        } catch (Exception e){
+            System.err.println(e.getMessage());
         }
 
-        if(Desktop.isDesktopSupported()){
-            try{
-                Desktop.getDesktop().open(myFile);
-            } catch(IOException except){
-                throw new ResourceException("cannot read file");
-            }
-        } else{
-            throw new ResourceException("Desktop not supported");
-        }
     }
 }

@@ -1,0 +1,9 @@
+{
+  "resourceList" : [ {
+    "id" : "doc1",
+    "title" : "dummy",
+    "location" : "/Users/georgesandu/Desktop/dummy.rtf",
+    "year" : 2026,
+    "author" : "George Sandu"
+  } ]
+}
