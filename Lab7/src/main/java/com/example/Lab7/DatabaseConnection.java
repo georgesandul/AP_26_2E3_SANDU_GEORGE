@@ -26,7 +26,7 @@ public class DatabaseConnection {
     public static void closeConnection() {
         if (dataSource != null) {
             dataSource.close();
-            System.out.println("connection pool closed.");
+            System.out.println("connection closed.");
         }
     }
 }

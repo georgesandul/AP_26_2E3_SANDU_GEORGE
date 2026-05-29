@@ -31,7 +31,6 @@ public class ReportGenerator {
             template.process(templateData, fileWriter);
         }
 
-        System.out.println("Movie HTML Report generated successfully!");
 
         if (Desktop.isDesktopSupported() && outputFile.exists()) {
             Desktop.getDesktop().open(outputFile);
